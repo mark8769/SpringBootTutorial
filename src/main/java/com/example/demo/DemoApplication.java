@@ -10,7 +10,7 @@ import java.time.Month;
 import java.time.LocalDate;
 @SpringBootApplication
 // The @RestController annotation tells Spring that this code describes an endpoint that should be made available over the web
-@RestController // Makes this class to serve REST endpoints.
+//@RestController // Makes this class to serve REST endpoints.
 public class DemoApplication {
 
 	public static void main(String[] args) {
@@ -21,10 +21,10 @@ public class DemoApplication {
 //	public String hello(){
 //		return "Hello World";
 //	}
-	@GetMapping // The only REST point right now. Showing how to send a json response.
-	public List<Student> jsonResponse() {
-		return List.of(
-				new Student(1L,"Mariam", "mariam.jamal@gmail.com",
-						LocalDate.of(2000, Month.JANUARY, 5),21 ));
-	}
+//	@GetMapping // The only REST point right now. Showing how to send a json response.
+//	public List<Student> jsonResponse() {
+//		return List.of(
+//				new Student(1L,"Mariam", "mariam.jamal@gmail.com",
+//						LocalDate.of(2000, Month.JANUARY, 5),21 ));
+//	}
 }
