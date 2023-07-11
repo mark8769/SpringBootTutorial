@@ -3,11 +3,7 @@ package com.example.demo;
 import com.sun.tools.javac.util.List; // Import needed for List class.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.student.Student;
-import java.time.Month;
-import java.time.LocalDate;
+
 @SpringBootApplication
 // The @RestController annotation tells Spring that this code describes an endpoint that should be made available over the web
 //@RestController // Makes this class to serve REST endpoints.
