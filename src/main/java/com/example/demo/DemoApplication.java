@@ -1,11 +1,15 @@
 package com.example.demo;
 
+import com.sun.tools.javac.util.List; // Import needed for List class.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.example.demo.student.Student;
+import java.time.Month;
+import java.time.LocalDate;
 @SpringBootApplication
+// The @RestController annotation tells Spring that this code describes an endpoint that should be made available over the web
 @RestController // Makes this class to serve REST endpoints.
 public class DemoApplication {
 
@@ -18,7 +22,9 @@ public class DemoApplication {
 //		return "Hello World";
 //	}
 	@GetMapping // The only REST point right now. Showing how to send a json response.
-	public List<String> jsonResponse(){
-		return List.of("Hello", "World");
+	public List<Student> jsonResponse() {
+		return List.of(
+				new Student(1L,"Mariam", "mariam.jamal@gmail.com",
+						LocalDate.of(2000, Month.JANUARY, 5),21 ));
 	}
 }
