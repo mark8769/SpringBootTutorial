@@ -1,8 +1,24 @@
 package com.example.demo.student;
+import javax.persistence.*;
 import java.time.LocalDate;
-
+@Entity // hibernate
+@Table // this is for table in database
 public class Student {
-
+    @Id // Id in table
+    // https://stackoverflow.com/questions/2595124/how-does-the-jpa-sequencegenerator-annotation-work
+    @SequenceGenerator( // Generate a sequence
+            name="student_sequence", //
+            // This is a way to specify a sequence that already exists in the database.
+            sequenceName="student_sequence", // Sequence name in database, will be same as other
+            // Needs to be the same value that the DB sequence uses as its "auto_increment"
+            allocationSize=1
+    )
+    @GeneratedValue(
+            // Recommended for postgres.
+            strategy = GenerationType.SEQUENCE,
+            // The sequence we have just created.
+            generator = "student_sequence"
+    )
     private Long id;
     private String name;
     private String email;
