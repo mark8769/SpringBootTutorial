@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.student.Student;
 import java.time.Month;
 import java.time.LocalDate;
-import com.sun.tools.javac.util.List; // Import needed for List class.
+import java.util.List;
 
 @RestController
 @RequestMapping(path="api/v1/student")

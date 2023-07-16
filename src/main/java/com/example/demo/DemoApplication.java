@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.sun.tools.javac.util.List; // Import needed for List class.
+import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
