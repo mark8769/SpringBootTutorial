@@ -1,6 +1,11 @@
 package com.example.demo.student;
+// Always use this because if we want to switch
+// from hibernate we can switch easily since it will be
+// the same implementation
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
+
 @Entity // hibernate
 @Table // this is for table in database
 public class Student {
@@ -23,6 +28,9 @@ public class Student {
     private String name;
     private String email;
     private LocalDate dob;
+    // It says this field does not have to be a column inside the database.
+    // Age will be calculated first
+    @Transient
     private Integer age;
 
     public Student() {
@@ -31,24 +39,20 @@ public class Student {
     public Student(Long id,
                    String name,
                    String email,
-                   LocalDate dob,
-                   Integer age) {
+                   LocalDate dob) {
 
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
     }
 
     public Student(String name,
                    String email,
-                   LocalDate dob,
-                   Integer age) {
+                   LocalDate dob) {
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
     }
 
     public Long getId() {
@@ -84,7 +88,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {

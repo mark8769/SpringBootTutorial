@@ -1,6 +1,10 @@
 package com.example.demo.student;
 
-import java.util.List;
+//https://stackoverflow.com/questions/55694629/cannot-resolve-method-list-ofjava-lang-string-java-lang-string
+//https://stackoverflow.com/questions/29036381/java-initialising-an-arraylist-with-array-aslist
+import java.util.List; //List.of() only in Java 9 and beyond
+import java.util.Arrays; // To use Arrays.asList() instead of List.of()
+//import java.util.ArrayLists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -21,12 +25,16 @@ public class StudentService {
 
 // This is the way to do it without dependency injection
 //    public List<Student> getStudents(){
-//        return List.of(
+//        return Arrays.asList(
 //                new Student(1L,"Mariam", "mariam.jamal@gmail.com",
 //                        LocalDate.of(2000, Month.JANUARY, 5),21 ));
 //    }
 
     public List<Student> getStudents(){
         return studentRepository.findAll();
+    }
+
+    public void addNewStudent(Student student) {
+        System.out.println(student);
     }
 }

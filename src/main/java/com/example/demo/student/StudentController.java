@@ -1,9 +1,7 @@
 package com.example.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.student.Student;
@@ -35,5 +33,12 @@ public class StudentController {
     public List<Student> getStudents(){
         return studentService.getStudents();
     }
+
+    //https://www.google.com/search?q=Request+body+mapping+annotation&oq=Request+body+mapping+annotation&aqs=chrome..69i57j33i160i395j33i160j33i22i29i30i395l4.7084j1j7&sourceid=chrome&ie=UTF-8
+    @PostMapping// RequestBody annotation is telling us to grab the body of the request and map it to the student.
+    public void registerNewStudent(@RequestBody Student student){
+        studentService.addNewStudent(student);
+    }
+
 }
 
