@@ -35,6 +35,13 @@ public class StudentService {
     }
 
     public void addNewStudent(Student student) {
-        System.out.println(student);
+        // Can be Student or null for Optional type
+        Optional<Student> studentByEmail = studentRepository.findStudentByEmail(student.getEmail());
+
+        // If we found a student and were able to instantiate it then throw exception
+        if (studentByEmail.isPresent()){
+            throw new IlegalStateException("Email is already taken");
+        }
+        studentRepository.save(student); // If not present in database then save the user.
     }
 }
