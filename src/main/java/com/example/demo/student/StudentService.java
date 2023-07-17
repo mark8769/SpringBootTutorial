@@ -10,8 +10,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import com.example.demo.student.StudentRepository;
 
+import javax.swing.text.html.Option;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Objects;
+import java.util.Optional;
+import java.lang.IllegalStateException;
 
 @Service
 public class StudentService {
@@ -40,8 +45,39 @@ public class StudentService {
 
         // If we found a student and were able to instantiate it then throw exception
         if (studentByEmail.isPresent()){
-            throw new IlegalStateException("Email is already taken");
+            throw new IllegalStateException("Email is already taken");
         }
         studentRepository.save(student); // If not present in database then save the user.
+    }
+
+    public void deleteStudent(Long id) {
+//        studentRepository.findById(studentId);
+        boolean exists = studentRepository.existsById(id);
+        if (!exists){
+            throw new IllegalStateException("Student with id " + id + " does not exists");
+        }
+        studentRepository.deleteById(id);
+
+    }
+    // Transactional annotation
+    //
+    @Transactional
+    public void updateStudent(Long studentId, String name, String email) {
+
+        Student student = studentRepository.findById(studentId).orElseThrow(
+                () -> new IllegalStateException("Student with id " + studentId + " does not exist.")
+        );
+        if (name != null && name.length() > 0 && !Objects.equals(student.getName(), name)){
+            student.setName(name);
+        }
+
+        if (email != null && email.length() > 0 && !Objects.equals(student.getEmail(), email)){
+            Optional<Student> studentOptional = studentRepository.findStudentByEmail(email);
+
+            if (studentOptional.isPresent()){
+                throw new IllegalStateException(("Email is already taken"));
+            }
+            student.setEmail(email);
+        }
     }
 }
