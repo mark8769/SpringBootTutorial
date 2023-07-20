@@ -1,0 +1,8 @@
+# Ignore mac dot file for window placement
+
+*.DS_Store
+
+# Ignore IntelliJ configuration files(might be useful on team, not here)
+
+*.metadata/
+*.idea/
